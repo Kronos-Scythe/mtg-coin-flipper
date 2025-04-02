@@ -451,18 +451,44 @@
   }
 })();
 
-function flipCoin() {
+function startFlipping() {
+  const numFlips = parseInt(document.getElementById('competitive_flips_count').value) || 1;
+  let current = 0;
+  let wins = 0;
   const coin = document.getElementById('coin');
   const result = document.getElementById('result');
 
-  // Reset animation
-  coin.classList.remove('flip');
-  void coin.offsetWidth; // Trigger reflow
-  coin.classList.add('flip');
+  result.innerHTML = '';
 
-  const win = Math.random() > 0.5;
-  setTimeout(() => {
-    result.textContent = win ? "✅ Success! Spell Copied!" : "❌ Oops! Spell Returned!";
-    result.style.color = win ? "#28a745" : "#dc3545";
-  }, 1000);
+  function doFlip() {
+    if (current >= numFlips) {
+      result.innerHTML += `<br><strong>✅ Total Wins: ${wins} / ${numFlips}</strong>`;
+      coin.classList.remove('invert');
+      return;
+    }
+
+    coin.classList.remove('flip');
+    void coin.offsetWidth;
+    coin.classList.add('flip');
+
+    const win = Math.random() > 0.5;
+    wins += win ? 1 : 0;
+
+    // Only toggle invert class
+    coin.classList.toggle('invert', !win);
+
+    const outcome = win
+      ? `<span style="color:green">✅</span>`
+      : `<span style="color:red">❌</span>`;
+
+    result.innerHTML += outcome + ' ';
+    current++;
+
+    setTimeout(doFlip, 400);
+  }
+
+  doFlip();
 }
+
+
+

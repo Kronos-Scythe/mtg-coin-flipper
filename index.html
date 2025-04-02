@@ -23,335 +23,38 @@
   <body>
     <div>
       <h1>Coin flip helper</h1>
+
       <!-- 🔥 Krark Coin Animation Start -->
-      <div id="krark-flipper" style="text-align: center; margin: 2rem 0">
-        <div
-          id="coin"
-          class="coin"
-          onclick="flipCoin()"
-          title="Click Krark's Coin!"
-        ></div>
-        <div id="result" class="result-text"></div>
-      </div>
+      <div id="coin" class="coin"></div>
+
+      <div id="result" class="result-text"></div>
       <!-- 🔥 Krark Coin Animation End -->
-      <p><em>Choose a rules enforcement level:</em></p>
-      <details>
-        <summary>Competitive REL</summary>
-        <div>
-          <form id="competitive_solver">
-            <h2>Resolving Coin Flips</h2>
-            <label>
-              Number of coin flips:
-              <input
-                class="wide"
-                type="number"
-                inputmode="numeric"
-                id="competitive_flips_count"
-                value="1"
-              />
-            </label>
-            <label
-              >Verbose mode: <input type="checkbox" id="competitive_verbose"
-            /></label>
-            <input type="reset" /> <button>Go!</button>
-            <label class="result">
-              Number of wins:
-              <span id="competitive_wins_count"></span>
-            </label>
-          </form>
-        </div>
-      </details>
-      <details>
-        <summary>Regular REL</summary>
-        <div>
-          <form id="frenetic_solver">
-            <h2>Resolving Frenetic Efreet</h2>
-            <label>
-              Krark Thumbs:
-              <input
-                type="number"
-                inputmode="numeric"
-                id="frenetic_krark_thumb_count"
-                value="0"
-              />
-            </label>
-
-            <label>
-              Number of flips:
-              <input
-                class="wide"
-                type="number"
-                inputmode="numeric"
-                id="frenetic_flips_count"
-                value="1"
-              />
-            </label>
-            <label
-              >Verbose mode: <input type="checkbox" id="frenetic_verbose"
-            /></label>
-            <input type="reset" /> <button>Go!</button>
-            <label class="result">
-              Number of wins:
-              <span id="frenetic_wins_count"></span>
-            </label>
-          </form>
-          <hr />
-          <form id="okaun_solver">
-            <h2>
-              Resolving Okaun // Zndrsplt
-              <small>and other effects that flip till you fail...</small>
-            </h2>
-            <label>
-              Krark Thumbs:
-              <input
-                type="number"
-                inputmode="numeric"
-                id="okaun_krark_thumb_count"
-                value="0"
-              />
-            </label>
-            <fieldset>
-              <legend>Strategy parameters</legend>
-              <label>
-                Attempt stop after
-                <input
-                  type="number"
-                  inputmode="numeric"
-                  id="okaun_max"
-                  value="10"
-                />
-                wins:
-                <input type="checkbox" id="okaun_stop" value="1" />
-              </label>
-            </fieldset>
-            <label
-              >Verbose mode: <input type="checkbox" id="okaun_verbose"
-            /></label>
-            <input type="reset" /> <button>Go!</button>
-            <label>
-              Okaun Power multiplier:
-              <span id="okaun_multi"></span>
-            </label>
-            <label class="result">
-              Number of wins (cards drawn):
-              <span id="okaun_wins_count"></span>
-            </label>
-          </form>
-          <hr />
-          <form id="krark_solver">
-            <h2>Resolving Krark // Sakashima</h2>
-            <label>
-              Krark Thumbs:
-              <input
-                type="number"
-                inputmode="numeric"
-                id="krark_thumb_count"
-                value="0"
-              />
-            </label>
-            <label>
-              Krark clones:
-              <input
-                type="number"
-                inputmode="numeric"
-                id="krarks_count"
-                value="1"
-              />
-            </label>
-            <label>
-              Trigger enhancers (Veyran, Prodigy):
-              <input
-                type="number"
-                inputmode="numeric"
-                id="krarks_enhancers"
-                value="0"
-              />
-            </label>
-            <fieldset>
-              <legend>Strategy parameters</legend>
-              <label>
-                Attempt return to hand BEFORE successful copy:
-                <input
-                  type="radio"
-                  id="krark_before"
-                  name="krark_bounce"
-                  value="1"
-                />
-              </label>
-              <label>
-                Attempt return to hand AFTER successful copy:
-                <input
-                  type="radio"
-                  id="krark_after"
-                  name="krark_bounce"
-                  value="1"
-                />
-              </label>
-              <label>
-                Attempt stop after
-                <input
-                  type="number"
-                  inputmode="numeric"
-                  id="krark_max"
-                  value="10"
-                />
-                wins:
-                <input type="checkbox" id="krark_stop" value="1" />
-              </label>
-            </fieldset>
-            <label
-              >Verbose mode: <input type="checkbox" id="krark_verbose"
-            /></label>
-            <input type="reset" /> <button>Go!</button>
-            <label>
-              Original spell goes to hand?:
-              <span id="krark_hand"></span>
-            </label>
-            <label class="result">
-              Number of wins (spell copies):
-              <span id="krark_wins_count"></span>
-            </label>
-          </form>
-          <hr />
-          <form id="mana_solver">
-            <h2>Mana generator</h2>
-            <label>
-              Desired mana:
-              <input
-                type="number"
-                inputmode="numeric"
-                id="desired_mana"
-                value="5"
-              />
-            </label>
-            <fieldset>
-              <legend>Krark parameters</legend>
-              <label>
-                Krark Thumbs:
-                <input
-                  type="number"
-                  inputmode="numeric"
-                  id="mana_thumb"
-                  value="0"
-                />
-              </label>
-              <label>
-                Krark clones:
-                <input
-                  type="number"
-                  inputmode="numeric"
-                  id="mana_krarks"
-                  value="1"
-                />
-              </label>
-              <label>
-                Trigger enhancers (Veyran, Prodigy):
-                <input
-                  type="number"
-                  inputmode="numeric"
-                  id="mana_krarks_enhancers"
-                  value="0"
-                />
-              </label>
-            </fieldset>
-            <fieldset>
-              <legend>Ritual parameters</legend>
-              <label>
-                Ritual cost:
-                <input
-                  type="number"
-                  inputmode="numeric"
-                  id="mana_in"
-                  value="1"
-                />
-              </label>
-              <label>
-                Ritual produces:
-                <input
-                  type="number"
-                  inputmode="numeric"
-                  id="mana_out"
-                  value="2"
-                />
-              </label>
-              <label>
-                Storm-Kiln Artists:
-                <input
-                  type="number"
-                  inputmode="numeric"
-                  id="mana_sk"
-                  value="0"
-                />
-              </label>
-              <label>
-                Tavern Scoundrels:
-                <input
-                  type="number"
-                  inputmode="numeric"
-                  id="mana_ts"
-                  value="0"
-                />
-              </label>
-            </fieldset>
-            <fieldset>
-              <legend>Strategy parameters</legend>
-              <label>
-                Attempt return to hand BEFORE successful copy:
-                <input
-                  type="radio"
-                  id="mana_before"
-                  name="mana_bounce"
-                  checked
-                  value="1"
-                />
-              </label>
-              <label>
-                Attempt return to hand AFTER successful copy:
-                <input
-                  type="radio"
-                  id="mana_after"
-                  name="mana_bounce"
-                  value="1"
-                />
-              </label>
-            </fieldset>
-            <label
-              >Verbose mode: <input type="checkbox" id="mana_verbose"
-            /></label>
-            <input type="reset" /> <button>Go!</button>
-            <label>
-              Original spell goes to hand?:
-              <span id="mana_hand"></span>
-            </label>
-            <label class="result">
-              Mana generated (treasures included):
-              <span id="mana_generated"></span>
-            </label>
-          </form>
-        </div>
-      </details>
-
-      <hr />
-
+      <div>
+        <form id="competitive_solver">
+          <h2>Resolving Coin Flips</h2>
+          <label>
+            Number of coin flips:
+            <input
+              class="wide"
+              type="number"
+              inputmode="numeric"
+              id="competitive_flips_count"
+              value="1"
+            />
+          </label>
+          <input type="reset" />
+          <button onclick="startFlipping()" style="margin-top: 1rem">
+            Start Flip Sequence
+          </button>
+        </form>
+      </div>
       <p>
-        Check out the
+        Check out the original repository for this tool
         <a href="https://github.com/fbatista/mtg-coin-flipper"
           >github repository</a
         >
-        for this tool and feel free to reach out to
+        for this tool and feel free to reach out to the original author 
         <a href="https://github.com/fbatista">me</a>.
-      </p>
-      <p>
-        I'm a Level 2 MTG Judge and i've built this to make it possible to flip
-        millions of coins with ease &#x1F605;
-      </p>
-      <p>Make sure that all players agree to this method before using it!</p>
-      <p>
-        <strong>Have fun and best of luck!</strong
-        ><small
-          >... and remember, if your luck is bad, just get more Krark's
-          Thumbs!</small
-        >
       </p>
     </div>
   </body>
