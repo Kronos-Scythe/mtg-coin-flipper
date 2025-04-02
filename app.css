@@ -108,3 +108,34 @@ details {
 .invert {
   filter: invert(1);
 }
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode a {
+  color: #90caf9;
+}
+
+body.dark-mode .coin {
+  box-shadow: 0 0 15px #f44336;
+}
+
+body.dark-mode .result-text {
+  color: #00e676;
+}
+
+.dark-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #333;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+

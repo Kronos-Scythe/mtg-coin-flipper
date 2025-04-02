@@ -478,8 +478,8 @@ function startFlipping() {
     coin.classList.toggle('invert', !win);
 
     const outcome = win
-      ? `<span style="color:green">✅</span>`
-      : `<span style="color:red">❌</span>`;
+    ? '<img src="img/success-icon.png" alt="Success" class="flip-result-icon">'
+    : '<img src="img/failure-icon.png" alt="Failure" class="flip-result-icon">';
 
     result.innerHTML += outcome + ' ';
     current++;
@@ -488,6 +488,10 @@ function startFlipping() {
   }
 
   doFlip();
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
 }
 
 

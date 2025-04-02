@@ -20,12 +20,13 @@
     <script src="app.js" defer async type="text/javascript"></script>
   </head>
 
-  <body>
+  <body class="dark-mode">
     <div>
-      <h1>Coin flip helper</h1>
+      <h1>Coin Flip Helper</h1>
+      <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
 
       <!-- 🔥 Krark Coin Animation Start -->
-      <div id="coin" class="coin"></div>
+      <div id="coin" class="coin" onclick="startFlipping()"></div>
 
       <div id="result" class="result-text"></div>
       <!-- 🔥 Krark Coin Animation End -->
@@ -33,7 +34,7 @@
         <form id="competitive_solver">
           <h2>Resolving Coin Flips</h2>
           <label>
-            Number of coin flips:
+            
             <input
               class="wide"
               type="number"
@@ -42,10 +43,6 @@
               value="1"
             />
           </label>
-          <input type="reset" />
-          <button onclick="startFlipping()" style="margin-top: 1rem">
-            Start Flip Sequence
-          </button>
         </form>
       </div>
       <p>
