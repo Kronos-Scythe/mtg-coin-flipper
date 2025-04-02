@@ -450,3 +450,19 @@
     }
   }
 })();
+
+function flipCoin() {
+  const coin = document.getElementById('coin');
+  const result = document.getElementById('result');
+
+  // Reset animation
+  coin.classList.remove('flip');
+  void coin.offsetWidth; // Trigger reflow
+  coin.classList.add('flip');
+
+  const win = Math.random() > 0.5;
+  setTimeout(() => {
+    result.textContent = win ? "✅ Success! Spell Copied!" : "❌ Oops! Spell Returned!";
+    result.style.color = win ? "#28a745" : "#dc3545";
+  }, 1000);
+}
